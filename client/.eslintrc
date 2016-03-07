@@ -1,13 +1,19 @@
 {
-	"extends": "eslint:recommended",
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
 	"env": {
 		"es6": true,
 		"browser": true
 	},
 	"parserOptions": {
 		"sourceType": "module",
-		"ecmaVersion": 6
+		"ecmaVersion": 6,
+		"ecmaFeatures": {
+			"jsx": true
+		}
 	},
+  "plugins": [
+    "react"
+  ],
 	"globals": {
 		"window": true,
 		"document": true,
@@ -17,6 +23,7 @@
 		"global": false
 	},
 	"rules": {
+		"jsx-quotes": [1, "prefer-double"],
 		"no-unused-vars": 1,
 		"no-console": 1,
 		"indent": [
