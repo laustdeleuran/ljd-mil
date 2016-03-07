@@ -1,0 +1,26 @@
+/**
+ * No script
+ *
+ * @section Components
+ * @author ljd
+ */
+.o-noscript {}
+.o-noscript__content {
+	padding: $base-line-height 15px;
+	margin: 0 auto;
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: $z-index-noscript;
+
+	background: $color-yellow;
+
+	h6 {
+		margin: 0;
+	}
+	>:last-child {
+		margin-bottom: 0;
+	}
+}

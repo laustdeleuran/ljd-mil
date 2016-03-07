@@ -1,0 +1,16 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"folder_exclude_patterns": [
+				"dist",
+				"docs",
+				"node_modules"
+			]
+		}
+	],
+	"settings": {
+		"translate_tabs_to_spaces": false
+	}
+}

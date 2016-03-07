@@ -1,0 +1,33 @@
+/**
+* Variables
+*
+* Basic site wide variables. All variables used cross-modules should be placed here. Please use existing CSS naming conventions when naming variables in CSS (lowercase, dashes - see http://cssguidelin.es/#naming-conventions).
+*
+* @section Variables
+* @author ljd
+*/
+
+// Type & rythm
+$em-base:                  18px;
+$base-line-height:         10px;
+
+// Z-index
+$z-stage:                  100;
+$z-controls:               200;
+$z-index-noscript:         300;
+  
+// Colors
+$color-white:              rgb(255, 255, 255);
+$color-black:              rgb(0, 0, 0);
+
+$color-yellow:             rgb(252, 198, 100);
+
+$color-facebook:           rgb(59, 89, 152);
+$color-twitter:            rgb(0, 172, 237);
+$color-instagram:          rgb(103, 81, 68);
+$color-youtube:            rgb(196, 48, 43);
+
+// Font
+$font-stack-sans:          'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$font-stack-serif:         'Georgia', 'Times', 'Times New Roman', serif;
+$font-stack-mono:          'Courier New', 'Courier', 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
