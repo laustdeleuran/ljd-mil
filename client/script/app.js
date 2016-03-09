@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom';
 // Get routing libs
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { Router, Route, IndexRoute } from 'react-router';
 import { createHistory } from 'history';
 import { syncHistory, routeReducer } from 'redux-simple-router';
 
@@ -65,14 +66,29 @@ const store = createStoreWithMiddleware(reducer);
 // Required for replaying actions from devtools to work
 reduxRouterMiddleware.listenForReplays(store);
 
+// Get app components
+import CoreLayout from './components/layouts/core';
 
-// Import dynamic routing
-import Routes from './components/routes';
+import ListView from './components/views/list';
+import LogView from './components/views/log';
+import AnalysisView from './components/views/analysis';
+import LoginView from './components/views/login';
 
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Routes history={history} />
+		<Router history={history}>
+			<Route path="/" component={CoreLayout}>
+				<IndexRoute component={ListView}>
+
+				<Route path="list" component={ListView}>
+					<Route path="log" component={LogView} />
+					<Route path="analysis" component={AnalysisView} />
+				</Route>
+				</IndexRoute>
+				<Route path="login" component={LoginView} />
+			</Route>
+		</Router>
 	</Provider>,
-	document.getElementById('distortion')
+	document.getElementById('mil')
 );
