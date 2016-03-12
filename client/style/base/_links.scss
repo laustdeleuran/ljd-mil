@@ -14,12 +14,12 @@
 a {
 	@extend %link;
 
-	color: $color-black;
+	color: $color-purple-dark;
 	text-decoration: none;
 	vertical-align: baseline;
 	
 	@include link-active {
-		color: $color-black;
+		color: $color-purple-dark;
 	}
 }
 a[href],

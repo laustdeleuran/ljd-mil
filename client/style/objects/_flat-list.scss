@@ -1,0 +1,21 @@
+/**
+* Flat list
+*
+* @section Objects
+* @author ljd
+*/
+.o-flat-list,
+.o-flat-list > li {
+	@extend %list-helper;
+	display: inline-block;
+}
+.o-flat-list {
+	margin: 0 -spacer-size(0);
+
+	&:after {
+		@extend %clearfix;
+	}
+}
+.o-flat-list > li {
+	margin: 0 spacer-size(0);	
+}

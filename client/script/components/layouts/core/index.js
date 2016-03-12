@@ -11,29 +11,47 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import classNames from 'classNames';
 
 import DrawerModule from '../../modules/drawer';
 import NavModule from '../../modules/nav';
 import FooterModule from '../../modules/footer';
 
-function CoreLayout({children}) {
-	return (
-		<div className="c-layout c-layout--core">
-			<DrawerModule>
-				<NavModule />
-			</DrawerModule>
-			<div className="c-layout__scroller o-scroller o-scroller--fit">
-				<main className="c-layout__view">
-					{children}
-				</main>
-				<FooterModule />
+class CoreLayout extends React.Component {
+	render () {
+		const { drawerVisible, children } = this.props;
+
+		return (
+			<div className={ classNames('c-layout', 'c-layout--core', { 'c-layout--drawer': drawerVisible }) }>
+				<DrawerModule>
+					<NavModule />
+				</DrawerModule>
+				<div className="c-layout__scroller o-scroller o-scroller--fit">
+					<main className="c-layout__view">
+						{children}
+					</main>
+					<FooterModule />
+				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 }
 
+
 CoreLayout.propTypes = {
-	children: React.PropTypes.element
+	children: React.PropTypes.element,
+	drawerVisible: React.PropTypes.bool
 };
 
-export default CoreLayout;
+
+
+function select(state) {
+	return {
+		drawerVisible: state.drawer
+	};
+}
+
+
+
+export default connect(select)(CoreLayout);

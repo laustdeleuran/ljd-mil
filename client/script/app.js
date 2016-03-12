@@ -21,50 +21,47 @@ import ReactDOM from 'react-dom';
 // Get routing libs
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute } from 'react-router';
-import { createHistory } from 'history';
-import { syncHistory, routeReducer } from 'redux-simple-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 
 
 
 // Get redux middleware
 import thunkMiddleware from 'redux-thunk';
+
 import createLogger from 'redux-logger';
+const loggerMiddleware = createLogger(); // neat middleware that logs actions
+
+const middleware = applyMiddleware(routerMiddleware(browserHistory), thunkMiddleware, loggerMiddleware);
 
 
 
 // Load reducers
 import drawer from './reducers/drawer';
-import feeds from './reducers/feeds';
-import postByCategory from './reducers/posts-by-category';
-import pages from './reducers/pages';
-import routes from './reducers/routes';
 
-// Combine custom reducers with routing reducer
-const reducer = combineReducers(Object.assign({}, {
+const reducers = combineReducers(Object.assign({}, {
 	drawer,
-	feeds,
-	postByCategory,
-	pages,
-	routes,
-	routing: routeReducer
+	routing: routerReducer
 }));
 
+
+
+// Create an enhanced history that syncs navigation events with the store
+const store = createStore(
+	reducers,
+	middleware
+);
+
+window.store = store;
+window.reducers = reducers;
+window.middleware = middleware;
 
 
 // Set up middleware
 
 // Sync dispatched route actions to the history
-const history = createHistory();
-const reduxRouterMiddleware = syncHistory(history);
+const history = syncHistoryWithStore(browserHistory, store);
 
-const loggerMiddleware = createLogger(); // neat middleware that logs actions
-
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, thunkMiddleware, loggerMiddleware)(createStore);
-const store = createStoreWithMiddleware(reducer);
-
-// Required for replaying actions from devtools to work
-reduxRouterMiddleware.listenForReplays(store);
 
 // Get app components
 import CoreLayout from './components/layouts/core';
@@ -75,11 +72,13 @@ import AnalysisView from './components/views/analysis';
 import LoginView from './components/views/login';
 
 
+
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={history}>
 			<Route path="/" component={CoreLayout}>
-				<IndexRoute component={ListView}>
+				<IndexRoute component={LoginView}>
 
 				<Route path="list" component={ListView}>
 					<Route path="log" component={LogView} />

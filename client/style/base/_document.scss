@@ -26,9 +26,10 @@ html {
 	position: relative;
 
 	font-family: $font-stack-sans;
-	font-weight: 400;
+	font-weight: 300;
 	text-rendering: optimizeLegibility;
 	color: $color-white;
 	
-	background: $color-black;
+	background: $color-purple-light fixed no-repeat;
+	@include linear-gradient(to top left, $color-purple-light, $color-blue-light);
 }

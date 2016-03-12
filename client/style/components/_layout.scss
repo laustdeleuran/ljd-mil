@@ -1,0 +1,26 @@
+/**
+* Layout
+*
+* @section Components
+* @author ljd
+*/
+.c-layout {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.c-layout__view {
+	padding: spacer-size(2) spacer-size(0);
+}
+.c-layout__scroller {
+	z-index: $z-index-view;
+
+	@include transition($transition-content);
+}
+.c-layout--drawer {
+	.c-layout__scroller {
+		@include transform(translateY(100%));
+	}
+}

@@ -4,7 +4,7 @@
 import getPackageJson from './utils/get-package-json';
 
 // Base constants
-const clientSrcDir = 'src';
+const clientSrcDir = 'client';
 const clientDistDir = 'dist';
 const clientJsMainFileName = 'app.js';
 

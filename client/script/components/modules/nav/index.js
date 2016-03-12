@@ -13,7 +13,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { closeDrawer } from '../../../actions';
+import { closeDrawer } from '../../../actions/drawer';
 
 class NavModule extends React.Component {
 
@@ -43,18 +43,9 @@ class NavModule extends React.Component {
 
 
 NavModule.propTypes = {
-	dispatch: React.PropTypes.func.isRequired,
-	location: React.PropTypes.object.isRequired
+	dispatch: React.PropTypes.func.isRequired
 };
 
 
 
-function select(state) {
-	return {
-		location: state.routing.location // We need to explicitly define what state props we depend on, even though it's only implicitly implied in the <Link> modules. See https://github.com/rackt/react-redux/blob/v4.0.0/docs/troubleshooting.md#my-views-arent-updating-when-something-changes-outside-of-redux.
-	};
-}
-
-
-
-export default connect(select)(NavModule);
+export default connect()(NavModule);

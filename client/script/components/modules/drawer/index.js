@@ -12,7 +12,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleDrawer } from '../../../actions';
+import classNames from 'classNames';
+
+import { toggleDrawer } from '../../../actions/drawer';
 
 class DrawerModule extends React.Component {
 
@@ -26,7 +28,7 @@ class DrawerModule extends React.Component {
 		const { visible, children } = this.props;
 
 		return (
-			<section className={ visible ? 'c-drawer' : 'c-drawer c-drawer--hidden'}>
+			<section className={ classNames('c-drawer', { 'c-drawer--hidden': !visible }) }>
 				<div className="c-drawer__content o-scroller">{children}</div>
 				<a className="c-drawer__toggle" onClick={() => this.onToggleClick()}>Toggle</a>
 			</section>
@@ -46,7 +48,7 @@ DrawerModule.propTypes = {
 
 function select(state) {
 	return {
-		visible: state.distortion.drawer
+		visible: state.drawer
 	};
 }
 

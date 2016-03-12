@@ -1,0 +1,74 @@
+/**
+* Drawer
+*
+* @section Components
+* @author ljd
+*/
+.c-drawer {}
+.c-drawer__content {
+	padding: spacer-size(2) spacer-size(0);
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: $z-index-drawer;
+
+	@include transition($transition-content);
+}
+.c-drawer__toggle {
+	@extend %hide-text;
+
+	width: 60px;
+	height: 60px;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: $z-index-drawer + 1;
+
+	cursor: pointer;
+
+	&:before,
+	&:after {
+		@extend %pseudo-block;
+
+		height: 3px;
+		margin-top: -1px;
+		border-radius: 2px;
+
+		position: absolute;
+		top: 50%;
+		left: 15px;
+		right: 15px;
+
+		background: $color-white;
+	
+		@include transition($transition-content);
+	}
+	&:before {
+		@include transform(rotate(45deg));
+	}
+	&:after {
+		@include transform(rotate(-45deg));
+	}
+}
+// Modifiers
+.c-drawer--hidden {
+	.c-drawer__content {
+		@include transform(translateY(-100%));
+	}
+	.c-drawer__toggle {
+		&:before,
+		&:after {
+			@include transform(rotate(0deg));
+		}
+		&:before {
+			margin-top: -5px;
+		}
+		&:after {
+			margin-top: 5px;
+		}
+	}
+}

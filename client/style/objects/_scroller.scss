@@ -1,0 +1,17 @@
+/**
+ * Scroller
+ *
+ * @section Components
+ * @author ljd
+ */
+ .o-scroller {
+	-webkit-overflow-scrolling: touch;
+	overflow: auto;
+}
+.o-scroller--fit {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
