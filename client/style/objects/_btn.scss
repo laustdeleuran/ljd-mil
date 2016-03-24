@@ -1,0 +1,35 @@
+/**
+* Button
+*
+* @section Objects
+* @author ljd
+*/
+.o-btn {
+	display: inline-block;
+	padding: 0 spacer-size(1);
+	height: $base-line-height * 2;
+	border: 1px solid $color-white;
+
+	color: $color-white;
+	font-size: modular-scale(0);
+	text-transform: uppercase;
+	font-weight: 300;
+	line-height: $base-line-height * 2 - 2px;
+
+	background: none;
+
+	outline: none;
+	cursor: pointer;
+
+	@include link-active {
+		background: rgba($color-white, 0.2);
+	}
+}
+.o-btn--small {
+	padding-right: spacer-size(0);
+	padding-left: spacer-size(0);
+	height: $base-line-height * 1;
+
+	font-size: modular-scale(-2);
+	line-height: $base-line-height * 1 - 2px;
+}

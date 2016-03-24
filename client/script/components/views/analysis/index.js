@@ -12,11 +12,13 @@
 
 import React from 'react';
 
+import UserModule from '../../modules/user';
+
 class AnalysisView extends React.Component {
 	render () {
 		return (
 			<div className="o-view o-view--analysis">
-				Analysis
+				<UserModule />
 			</div>
 		);
 	}

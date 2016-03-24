@@ -22,7 +22,7 @@ import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
+import { syncHistoryWithStore, routerReducer, routerMiddleware, routerActions } from 'react-router-redux';
 
 
 
@@ -38,12 +38,24 @@ const middleware = applyMiddleware(routerMiddleware(browserHistory), thunkMiddle
 
 // Load reducers
 import drawer from './reducers/drawer';
+import login from './reducers/login';
 
 const reducers = combineReducers(Object.assign({}, {
 	drawer,
+	login,
 	routing: routerReducer
 }));
 
+
+
+// Set up authentication - https://github.com/mjrussell/redux-auth-wrapper
+import { UserAuthWrapper } from 'redux-auth-wrapper';
+const UserIsAuthenticated = UserAuthWrapper({
+	failureRedirectPath: '/',
+	authSelector: state => state.login.session, // how to get the user state
+	redirectAction: routerActions.replace, // the redux action to dispatch for redirect
+	wrapperDisplayName: 'UserIsAuthenticated' // a nice name for this auth check
+});
 
 
 // Create an enhanced history that syncs navigation events with the store
@@ -78,14 +90,11 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router history={history}>
 			<Route path="/" component={CoreLayout}>
-				<IndexRoute component={LoginView}>
-
-				<Route path="list" component={ListView}>
+				<IndexRoute component={LoginView} />
+				<Route path="list" component={UserIsAuthenticated(ListView)}>
 					<Route path="log" component={LogView} />
 					<Route path="analysis" component={AnalysisView} />
 				</Route>
-				</IndexRoute>
-				<Route path="login" component={LoginView} />
 			</Route>
 		</Router>
 	</Provider>,

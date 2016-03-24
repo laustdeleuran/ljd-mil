@@ -5,12 +5,15 @@
 * @author ljd
 */
 .c-nav {
-	@include adjust-font-size-to(modular-scale(1));
 	text-align: center;
+}
+.c-nav__list {
+	margin: 0 0 spacer-size(2) 0;
 }
 .c-nav__link {
 	display: block;
 	margin-bottom: spacer-size(0);
 	
+	@include adjust-font-size-to(modular-scale(1));
 	text-align: center;
 }
