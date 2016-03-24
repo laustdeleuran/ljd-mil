@@ -14,6 +14,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classNames';
 
+import UserModule from '../../modules/drawer';
 import DrawerModule from '../../modules/drawer';
 import NavModule from '../../modules/nav';
 import FooterModule from '../../modules/footer';
@@ -29,8 +30,9 @@ class CoreLayout extends React.Component {
 				</DrawerModule>
 				<div className="c-layout__scroller o-scroller o-scroller--fit">
 					<main className="c-layout__view">
-						{children}
+						{ children }
 					</main>
+					<UserModule />
 					<FooterModule />
 				</div>
 			</div>

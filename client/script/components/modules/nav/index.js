@@ -31,14 +31,18 @@ class NavModule extends React . Component {
 	}
 
 	render() {
+		const { session } = this.props;
+
+		var firstName = session && session.name.split(' ')[0];
+
 		return (
 			<nav className="c-nav">
 				<ul className="c-nav__list o-block-list">
 					<li className="c-nav__item">
-						<Link to="list" className="c-nav__link" activeClassName="c-nav__link--active" onClick={() => this.onLinkClick()}>All my vehicles</Link>
+						<Link to="list" className="c-nav__link" activeClassName="c-nav__link--active" onClick={() => this.onLinkClick()}>All your vehicles</Link>
 					</li>
 				</ul>
-					<a className="o-btn" onClick={() => this.onLogoutClick()}>Logout</a>
+					<a className="o-btn" onClick={() => this.onLogoutClick()}>Logout { firstName }</a>
 			</nav>
 			);
 	}
@@ -48,9 +52,19 @@ class NavModule extends React . Component {
 
 
 NavModule.propTypes = {
-	dispatch: React.PropTypes.func.isRequired
+	dispatch: React.PropTypes.func.isRequired,
+	session: React.PropTypes.object
 };
 
 
 
-export default connect()(NavModule);
+function mapStateToProps(state) {
+	return {
+		session: state.login && state.login.session
+	};
+}
+
+
+
+
+export default connect(mapStateToProps)(NavModule);

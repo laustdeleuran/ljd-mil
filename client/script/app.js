@@ -39,10 +39,12 @@ const middleware = applyMiddleware(routerMiddleware(browserHistory), thunkMiddle
 // Load reducers
 import drawer from './reducers/drawer';
 import login from './reducers/login';
+import vehicles from './reducers/vehicles';
 
 const reducers = combineReducers(Object.assign({}, {
 	drawer,
 	login,
+	vehicles,
 	routing: routerReducer
 }));
 
@@ -51,7 +53,7 @@ const reducers = combineReducers(Object.assign({}, {
 // Set up authentication - https://github.com/mjrussell/redux-auth-wrapper
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 const UserIsAuthenticated = UserAuthWrapper({
-	failureRedirectPath: '/',
+	failureRedirectPath: '/login',
 	authSelector: state => state.login.session, // how to get the user state
 	redirectAction: routerActions.replace, // the redux action to dispatch for redirect
 	wrapperDisplayName: 'UserIsAuthenticated' // a nice name for this auth check
@@ -73,23 +75,36 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 // Get app components
 import CoreLayout from './components/layouts/core';
+import LoginLayout from './components/layouts/login';
 
-import ListView from './components/views/list';
-import LogView from './components/views/log';
-import AnalysisView from './components/views/analysis';
-import LoginView from './components/views/login';
+import LoginModule from './components/modules/login';
+
+import VehicleModule from './components/modules/vehicle';
+import VehicleListModule from './components/modules/vehicle-list';
+import VehicleCreateModule from './components/modules/vehicle-create';
+
+import LogListModule from './components/modules/log-list';
+import LogCreateModule from './components/modules/log-create';
+
+import AnalysisModule from './components/modules/analysis';
+
 
 
 
 
 ReactDOM.render(
-	<Provider store={store}>
-		<Router history={history}>
-			<Route path="/" component={CoreLayout}>
-				<IndexRoute component={LoginView} />
-				<Route path="list" component={UserIsAuthenticated(ListView)}>
-					<Route path="log" component={LogView} />
-					<Route path="analysis" component={AnalysisView} />
+	<Provider store={ store }>
+		<Router history={ history }>
+			<Route path="/login" component={ LoginLayout }>
+				<IndexRoute component={ LoginModule } />
+			</Route>
+			<Route path="/" component={ UserIsAuthenticated(CoreLayout) }>
+				<IndexRoute component={ VehicleListModule } />
+				<Route path="vehicles/create" component={ VehicleCreateModule } />
+				<Route path="vehicles/:id" component={ VehicleModule }>
+					<IndexRoute component={ LogListModule } />
+					<Route path="/create" component={ LogCreateModule } />
+					<Route path="/analysis" component={ AnalysisModule } />
 				</Route>
 			</Route>
 		</Router>

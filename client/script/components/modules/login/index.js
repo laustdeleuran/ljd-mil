@@ -22,7 +22,7 @@ class LoginModule extends React.Component {
 		const { dispatch, session, redirect } = nextProps;
 
 		if (session) {
-			dispatch(push(redirect || '/list'));
+			dispatch(push(redirect || '/'));
 		}
 	}
 

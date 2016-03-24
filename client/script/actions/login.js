@@ -79,7 +79,7 @@ function fetchLogin() {
 
 			// First get facebook data
 			let getFacebookUser = new Promise(function(resolve, reject) {
-				let getUserData = function(authResponse) {
+				var getUserData = function(authResponse) {
 					window.FB.api('/me', {
 						locale: 'en_US',
 						fields: 'name, email'
@@ -125,7 +125,7 @@ function fetchLogin() {
 
 			let getLocalUser = session => new Promise(function(resolve, reject) {
 				// Create new user 
-				let create = () => fetch('/api/users', {
+				var create = () => fetch('/api/users', {
 					method: 'POST',
 					headers: new Headers({
 						'Content-Type': 'application/json'
@@ -136,7 +136,7 @@ function fetchLogin() {
 					.then(user => resolve(Object.assign({}, user, session)), reject);
 
 				// Update existing new user 
-				let update = (data) => fetch('/api/users/' + data._id, {
+				var update = (data) => fetch('/api/users/' + data._id, {
 					method: 'PUT',
 					headers: new Headers({
 						'Content-Type': 'application/json'
