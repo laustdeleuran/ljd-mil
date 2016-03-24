@@ -32,9 +32,13 @@ class UserModule extends React.Component {
 	}
 	
 	render () {
+		const { session } = this.props;
+
+		var firstName = session && session.name.split(' ')[0];
+
 		return (
 			<form className="c-user">
-				<button onClick={(event) => this.onLogoutClick(event) } className="c-user__btn o-btn o-btn--small">Logout</button>
+				<button onClick={(event) => this.onLogoutClick(event) } className="c-user__btn o-btn o-btn--small">Logout { firstName }</button>
 			</form>
 		);
 	}

@@ -11,16 +11,18 @@
 // Dependencies
 var restful = require('node-restful');
 var mongoose = restful.mongoose;
+var Schema = mongoose.Schema;
 
 
 // Scheme
-var vehicleSchema = new mongoose.Schema({
+var vehicleSchema = new Schema({
+	_user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 	name: String,
 	created: Date,
-	entries: []
+	logs: [{ type: Schema.Types.ObjectId, ref: 'Log' }]
 });
 
 
 
 // Export
-module.exports = restful.model('Vehicles', vehicleSchema);
+module.exports = restful.model('Vehicle', vehicleSchema);

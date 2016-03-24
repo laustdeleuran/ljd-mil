@@ -13,8 +13,8 @@
 // Dependencies
 var path = require('path');
 var express = require('express');
-var bodyParser = require('body-parser');
 var pkg = require('./../package.json');
+var mongoose = require('mongoose');
 
 
 // Basic initialization
@@ -22,13 +22,11 @@ var port = process.env.PORT || 2000;
 var app = express();
 
 
+// Mongo - https://www.youtube.com/watch?v=t9P2B7NUPfM&feature=youtu.be&t=50
+mongoose.connect('mongodb://localhost/mil');
+
 
 // Routing: Server
-
-// Set up middleware
-app.use(bodyParser.urlencoded({ extended: true})); 
-app.use(bodyParser.json());
-
 app.use('/api', require('./routes/api'));
 
 

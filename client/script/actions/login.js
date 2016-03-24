@@ -76,20 +76,38 @@ function fetchLogin() {
 	return dispatch => {
 		dispatch(requestLogin());
 		if (window.FB) {
-			let promise = new Promise(function(resolve, reject) {
+
+			// First get facebook data
+			let getFacebookUser = new Promise(function(resolve, reject) {
+				let getUserData = function(authResponse) {
+					window.FB.api('/me', {
+						locale: 'en_US',
+						fields: 'name, email'
+					}, function(response) {
+						if (!response || response.error) {
+							reject('Error calling FB.api()' + response.error);
+						} else {
+							resolve({
+								authResponse,
+								name: response.name,
+								email: response.email
+							});
+						}
+					});
+				};
+
 				window.FB.getLoginStatus(function(response) {
 					if (response.status === 'connected') {
-						resolve(response.authResponse);
-					}
-					else {
-						window.FB.login(function (response) {
+						getUserData(response.authResponse);
+					} else {
+						window.FB.login(function(response) {
 							if (response.status === 'connected') {
 								// the user is logged in and has authenticated your
 								// app, and response.authResponse supplies
 								// the user's ID, a valid access token, a signed
 								// request, and the time the access token 
 								// and signed request each expire
-								resolve(response.authResponse);
+								getUserData(response.authResponse);
 							} else if (response.status === 'not_authorized') {
 								// the user is logged in to Facebook, 
 								// but has not authenticated your app
@@ -98,15 +116,50 @@ function fetchLogin() {
 								// the user isn't logged in to Facebook.
 								reject('You\'re not logged in to Facebook.');
 							}
+						}, {
+							scope: 'public_profile,email'
 						});
 					}
 				});
 			});
-			
-			promise.then(authResponse => dispatch(receiveLogin(authResponse)), error => dispatch(errorLogin(error)));
 
-			return promise;
-			
+			let getLocalUser = session => new Promise(function(resolve, reject) {
+				// Create new user 
+				let create = () => fetch('/api/users', {
+					method: 'POST',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					}),
+					body: JSON.stringify(session)
+				})
+					.then(response => response.json(), reject)
+					.then(user => resolve(Object.assign({}, user, session)), reject);
+
+				// Update existing new user 
+				let update = (data) => fetch('/api/users/' + data._id, {
+					method: 'PUT',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					}),
+					body: JSON.stringify(session)
+				})
+					.then(response => response.json(), reject)
+					.then(user => resolve(Object.assign({}, user, session)), reject);
+
+				fetch('/api/users/?email=' + session.email, {
+					method: 'GET',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					})
+				})
+					.then(response => response.json(), reject)
+					.then(data => data && data[0] ? update(data[0]) : create(), reject);
+			});
+
+			return getFacebookUser
+				.then(session => getLocalUser(session), error => dispatch(errorLogin(error)))
+				.then(session => dispatch(receiveLogin(session)), error => dispatch(errorLogin(error)));
+
 		} else {
 			return dispatch(errorLogin('No FB API available.'));
 		}
@@ -164,7 +217,7 @@ export function fetchLoginIfNeeded() {
 export function logout() {
 	return (dispatch) => {
 		if (window.FB) {
-			window.FB.logout(function () {
+			window.FB.logout(function() {
 				dispatch(destroyLogin());
 			});
 		} else {
