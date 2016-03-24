@@ -11,7 +11,7 @@ gulp.task('server', function() {
 		ignore: [
 			'client/',
 			'dist/',
-			'*.*'
+			'gulp/'
 		],
 		port: config.serverPort,
 		env: {

@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Server
  * 
@@ -5,35 +7,50 @@
  *
  * @author ljd
  **/
-/* jshint node:true */
-'use strict';
+
 
 
 // Dependencies
 var path = require('path');
 var express = require('express');
+var bodyParser = require('body-parser');
 var pkg = require('./../package.json');
 
 
 // Basic initialization
 var port = process.env.PORT || 2000;
-var paths = {
-	app: path.join(__dirname, '../dist')
-};
 var app = express();
 
-//app.use($.connectLivereload());
-app.use(express.static(paths.app));
 
-// Let's get this show on the road!
-app.listen(port, function() {
-	console.log('\r\n');
-	console.log(':: server running :');
-	console.log(':: serving content from => \'%s\'', paths.app);
-	console.log(':: %s (v%s) is running on => \'http://localhost:%d\'', pkg.name, pkg.version, port);
-});
+
+// Routing: Server
+
+// Set up middleware
+app.use(bodyParser.urlencoded({ extended: true})); 
+app.use(bodyParser.json());
+
+app.use('/api', require('./routes/api'));
+
+
+
+// Routing: Client
+var clientPath = path.join(__dirname, '../dist');
+
+// All files in our app path is static files. Treat them as such
+app.use(express.static(clientPath)); 
 
 // All not predefined routes go to index.html. Angular handles the rest
 app.use(function(req, res) {
-	res.sendFile(paths.app + '/index.html');
+	res.sendFile(clientPath + '/index.html');
+});
+
+
+
+
+// Start server
+app.listen(port, function() {
+	console.log('\r\n');
+	console.log(':: server running :');
+	console.log(':: serving content from => \'%s\'', clientPath);
+	console.log(':: %s (v%s) is running on => \'http://localhost:%d\'', pkg.name, pkg.version, port);
 });

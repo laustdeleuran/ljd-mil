@@ -50,7 +50,6 @@ UserModule.propTypes = {
 
 
 function mapStateToProps(state) {
-	console.log('user.mapStateToProps', arguments);
 	return {
 		session: state.login && state.login.session
 	};
