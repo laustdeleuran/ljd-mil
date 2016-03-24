@@ -64,10 +64,6 @@ const store = createStore(
 	middleware
 );
 
-window.store = store;
-window.reducers = reducers;
-window.middleware = middleware;
-
 
 // Set up middleware
 

@@ -46,7 +46,7 @@ CoreLayout.propTypes = {
 
 
 
-function select(state) {
+function mapStateToProps(state) {
 	return {
 		drawerVisible: state.drawer
 	};
@@ -54,4 +54,4 @@ function select(state) {
 
 
 
-export default connect(select)(CoreLayout);
+export default connect(mapStateToProps)(CoreLayout);

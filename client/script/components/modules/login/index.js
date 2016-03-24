@@ -19,10 +19,10 @@ import { fetchLoginIfNeeded } from '../../../actions/login';
 class LoginModule extends React.Component {
 
 	componentWillUpdate(nextProps) {
-		const { dispatch, session } = nextProps;
+		const { dispatch, session, redirect } = nextProps;
 
 		if (session) {
-			dispatch(push('/list'));
+			dispatch(push(redirect || '/list'));
 		}
 	}
 
@@ -43,7 +43,7 @@ class LoginModule extends React.Component {
 	render () {
 		return (
 			<form className="c-login">
-				<button onClick={(event) => this.onLoginClick(event) } className="c-login__btn o-btn">Login</button>
+				<button onClick={(event) => this.onLoginClick(event) } className="c-login__btn o-btn">Login with FB</button>
 			</form>
 		);
 	}
@@ -51,19 +51,22 @@ class LoginModule extends React.Component {
 }
 
 
+
 LoginModule.propTypes = {
 	dispatch: React.PropTypes.func.isRequired,
-	session: React.PropTypes.object
+	session: React.PropTypes.object,
+	redirect: React.PropTypes.string
 };
 
 
 
-function select(state) {
+function mapStateToProps(state, ownProps) {
 	return {
-		session: state.login && state.login.session
+		session: state.login && state.login.session,
+		redirect: ownProps.redirect
 	};
 }
 
 
 
-export default connect(select)(LoginModule);
+export default connect(mapStateToProps)(LoginModule);

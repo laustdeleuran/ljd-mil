@@ -8,13 +8,14 @@
 	display: inline-block;
 	padding: 0 spacer-size(1);
 	height: $base-line-height * 2;
-	border: 1px solid $color-white;
+	border: 2px solid $color-white;
 
 	color: $color-white;
 	font-size: modular-scale(0);
 	text-transform: uppercase;
 	font-weight: 300;
-	line-height: $base-line-height * 2 - 2px;
+	line-height: $base-line-height * 2 - 4px;
+	letter-spacing: 0.1em;
 
 	background: none;
 
@@ -29,6 +30,7 @@
 	padding-right: spacer-size(0);
 	padding-left: spacer-size(0);
 	height: $base-line-height * 1;
+	border-width: 1px;
 
 	font-size: modular-scale(-2);
 	line-height: $base-line-height * 1 - 2px;

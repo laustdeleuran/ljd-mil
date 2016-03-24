@@ -46,7 +46,7 @@ DrawerModule.propTypes = {
 
 
 
-function select(state) {
+function mapStateToProps(state) {
 	return {
 		visible: state.drawer
 	};
@@ -54,4 +54,4 @@ function select(state) {
 
 
 
-export default connect(select)(DrawerModule);
+export default connect(mapStateToProps)(DrawerModule);

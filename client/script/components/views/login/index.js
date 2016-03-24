@@ -11,17 +11,36 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 import LoginModule from '../../modules/login';
 
 class LoginView extends React.Component {
 	render () {
+		const { redirect } = this.props;
+		
 		return (
 			<div className="o-view o-view--login">
-				<LoginModule />
+				<LoginModule redirect={ redirect } />
 			</div>
 		);
 	}
 }
 
-export default LoginView;
+
+
+LoginView.propTypes = {
+	redirect: React.PropTypes.string
+};
+
+
+
+function mapStateToProps(state, ownProps) {
+	return {
+		redirect: ownProps.location.query.redirect
+	};
+}
+
+
+
+export default connect(mapStateToProps)(LoginView);

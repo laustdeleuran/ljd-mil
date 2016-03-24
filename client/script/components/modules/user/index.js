@@ -49,7 +49,8 @@ UserModule.propTypes = {
 
 
 
-function select(state) {
+function mapStateToProps(state) {
+	console.log('user.mapStateToProps', arguments);
 	return {
 		session: state.login && state.login.session
 	};
@@ -57,4 +58,4 @@ function select(state) {
 
 
 
-export default connect(select)(UserModule);
+export default connect(mapStateToProps)(UserModule);
