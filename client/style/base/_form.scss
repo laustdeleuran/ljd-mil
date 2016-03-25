@@ -25,28 +25,33 @@ label[for] {
 input, 
 select,
 textarea {
+	display: inline-block;
 	box-sizing: border-box;
 	border: none;
 	border-radius: 0;
-	padding: 0;
+	padding: 0 0.25em;
+	height: $base-line-height;
 
-	@include adjust-font-size-to(modular-scale(0));
+	font-size: modular-scale(0);
+	line-height: $base-line-height;
 	font-family: $font-stack-sans;
-	color: $color-black;
+	color: $color-white;
+	vertical-align: top;
 
-	background: $color-white;
+	background: rgba($color-white, 0.25);
 
 	@include appearance(none);
+	box-shadow: 0 1px $color-white;
 
 	@include placeholder {
 		@include adjust-font-size-to(modular-scale(0));
-		color: $color-black;
+		color: rgba($color-black, 0.2);
 	}
 
 	&:focus {
 		outline: none;
 
-		box-shadow: 0 2px $color-black;
+		box-shadow: 0 1px $color-purple-dark;
 	}
 }
 input[type] { // Needs specificity to overwrite weird base styles in normalize

@@ -16,11 +16,11 @@ var Schema = mongoose.Schema;
 
 // Scheme
 var logSchema = new Schema({
-	_vehicle: [{ type: Schema.Types.ObjectId, ref: 'Vehicle' }],
+	_vehicle: { type: Schema.Types.ObjectId, ref: 'Vehicle' },
 	distance: Number,
 	volume: Number,
 	price: Number,
-	date: Date
+	date: { type: Date, default: Date.now}
 });
 
 

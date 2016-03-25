@@ -39,7 +39,7 @@ class NavModule extends React . Component {
 			<nav className="c-nav">
 				<ul className="c-nav__list o-block-list">
 					<li className="c-nav__item">
-						<Link to="list" className="c-nav__link" activeClassName="c-nav__link--active" onClick={() => this.onLinkClick()}>All your vehicles</Link>
+						<Link to="/" className="c-nav__link" activeClassName="c-nav__link--active" onClick={() => this.onLinkClick()}>All your vehicles</Link>
 					</li>
 				</ul>
 					<a className="o-btn" onClick={() => this.onLogoutClick()}>Logout { firstName }</a>

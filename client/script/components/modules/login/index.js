@@ -26,7 +26,7 @@ class LoginModule extends React.Component {
 		}
 	}
 
-	onLoginClick (event) {
+	onLoginSubmit (event) {
 		if (event) {
 			event.preventDefault();
 		}
@@ -42,8 +42,10 @@ class LoginModule extends React.Component {
 	
 	render () {
 		return (
-			<form className="c-login">
-				<button onClick={(event) => this.onLoginClick(event) } className="c-login__btn o-btn">Login with FB</button>
+			<form className="c-login" onSubmit={ (event) => this.onLoginSubmit(event) }>
+				<h1 className="c-login__title">Mil</h1>
+				<p className="c-login__subtitle">The dead simple mileage tracker</p>
+				<button className="c-login__btn o-btn">Login with FB</button>
 			</form>
 		);
 	}

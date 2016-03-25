@@ -78,9 +78,11 @@
 /**
 * [7] Components
 */
+@import "components/create";
 @import "components/drawer";
 @import "components/footer";
 @import "components/layout";
+@import "components/list";
 @import "components/login";
 @import "components/nav";
 @import "components/user";

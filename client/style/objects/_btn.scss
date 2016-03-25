@@ -16,6 +16,7 @@
 	font-weight: 300;
 	line-height: $base-line-height * 2 - 4px;
 	letter-spacing: 0.1em;
+	vertical-align: top;
 
 	background: none;
 
@@ -25,6 +26,15 @@
 	@include link-active {
 		background: rgba($color-white, 0.2);
 	}
+}
+.o-btn--medium {
+	padding-right: spacer-size(0);
+	padding-left: spacer-size(0);
+	height: $base-line-height * 1.5;
+	border-width: 1px;
+
+	font-size: modular-scale(-1);
+	line-height: $base-line-height * 1.5 - 2px;
 }
 .o-btn--small {
 	padding-right: spacer-size(0);

@@ -3,7 +3,9 @@
 import { 
 	INVALIDATE_VEHICLES, 
 	REQUEST_VEHICLES, 
-	RECEIVE_VEHICLES } from '../actions/vehicles';
+	RECEIVE_VEHICLES, 
+	REQUEST_ADD_VEHICLES, 
+	RECEIVE_ADD_VEHICLES  } from '../actions/vehicles';
 
 /**
  * @method
@@ -21,12 +23,14 @@ export default function vehicles(state = {
 				didInvalidate: true
 			};
 		case REQUEST_VEHICLES:
+		case REQUEST_ADD_VEHICLES:
 			return {
 				...state,
 				isFetching: true,
 				didInvalidate: false
 			};
 		case RECEIVE_VEHICLES:
+		case RECEIVE_ADD_VEHICLES:
 			return {
 				...state,
 				isFetching: false,

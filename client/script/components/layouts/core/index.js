@@ -14,7 +14,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classNames';
 
-import UserModule from '../../modules/drawer';
+import UserModule from '../../modules/user';
 import DrawerModule from '../../modules/drawer';
 import NavModule from '../../modules/nav';
 import FooterModule from '../../modules/footer';

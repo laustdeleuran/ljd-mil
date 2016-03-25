@@ -1,0 +1,47 @@
+/**
+* Create
+*
+* @section Components
+* @author ljd
+*/
+.c-create {
+	margin: spacer-size(0) 0 0;
+	padding: spacer-size(0) 0 0;
+	border-top: 1px solid $color-white;
+
+	position: relative;
+
+	text-align: center;
+}
+.c-create__input {
+	display: inline-block;
+	width: 80%;
+	margin: 0 5% spacer-size(0);
+}
+.c-create__input--small {
+	width: 35%;
+}
+// Modifiers
+.c-create--loading {
+	cursor: wait;
+	opacity: 0.5;
+
+	&:after {
+		@extend %pseudo-block;
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+// Media queries
+@include media(mobileH) {
+	.c-create__input {
+		width: 40%;
+	}
+	.c-create__input--small {
+		width: 15%;
+	}
+}

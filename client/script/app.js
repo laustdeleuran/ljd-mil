@@ -81,10 +81,8 @@ import LoginModule from './components/modules/login';
 
 import VehicleModule from './components/modules/vehicle';
 import VehicleListModule from './components/modules/vehicle-list';
-import VehicleCreateModule from './components/modules/vehicle-create';
 
 import LogListModule from './components/modules/log-list';
-import LogCreateModule from './components/modules/log-create';
 
 import AnalysisModule from './components/modules/analysis';
 
@@ -100,10 +98,8 @@ ReactDOM.render(
 			</Route>
 			<Route path="/" component={ UserIsAuthenticated(CoreLayout) }>
 				<IndexRoute component={ VehicleListModule } />
-				<Route path="vehicles/create" component={ VehicleCreateModule } />
 				<Route path="vehicles/:id" component={ VehicleModule }>
 					<IndexRoute component={ LogListModule } />
-					<Route path="/create" component={ LogCreateModule } />
 					<Route path="/analysis" component={ AnalysisModule } />
 				</Route>
 			</Route>

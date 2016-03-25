@@ -1,0 +1,12 @@
+/**
+* List
+*
+* @section Components
+* @author ljd
+*/
+.c-list {}
+.c-list__item--empty {
+	opacity: 0.5;
+	text-align: center;
+	cursor: not-allowed;
+}

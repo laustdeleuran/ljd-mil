@@ -5,9 +5,10 @@
  * @author ljd
  */
 h1, h2, h3, h4, h5, h6 {
-	margin: 0 0 $base-line-height * 2;
+	margin: 0 0 $base-line-height;
 
-	@include adjust-font-size-to(modular-scale(3));
+	@include adjust-font-size-to(modular-scale(2));
+	font-weight: 300;
 }
 h2 {
 	@include adjust-font-size-to(modular-scale(2));
@@ -26,14 +27,14 @@ figure,
 figcaption,
 table {
 	display: block;
-	margin: 0 0 $base-line-height * 2;
+	margin: 0 0 $base-line-height;
 	padding: 0;
 }
 code {
 	@include adjust-font-size-to(modular-scale(0));
 }
 hr {
-	margin: 0 0 $base-line-height * 2;
+	margin: 0 0 $base-line-height;
 	height: 1px;
 	border: none;
 	background: $color-black;
@@ -45,16 +46,4 @@ mark {
 	color: $color-black;
 	
 	background: $color-white;
-}
-// Print
-@media print {
-	p,
-	ol,
-	ul,
-	li,
-	blockquote,
-	figure,
-	figcaption {
-		margin: 0 0 $base-line-height * 1;
-	}
 }

@@ -16,9 +16,9 @@ var Schema = mongoose.Schema;
 
 // Scheme
 var vehicleSchema = new Schema({
-	_user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+	_user: { type: Schema.Types.ObjectId, ref: 'User' },
 	name: String,
-	created: Date,
+	created: { type: Date, default: Date.now},
 	logs: [{ type: Schema.Types.ObjectId, ref: 'Log' }]
 });
 

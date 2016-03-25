@@ -9,10 +9,49 @@
  * @author ljd
  */
 
+export const REQUEST_ADD_VEHICLE = 'REQUEST_ADD_VEHICLES';
+export const RECEIVE_ADD_VEHICLE = 'RECEIVE_ADD_VEHICLES';
+export const ERROR_ADD_VEHICLE = 'ERROR_ADD_VEHICLES';
+
 export const REQUEST_VEHICLES = 'REQUEST_VEHICLES';
 export const ERROR_VEHICLES = 'ERROR_VEHICLES';
 export const RECEIVE_VEHICLES = 'RECEIVE_VEHICLES';
 export const INVALIDATE_VEHICLES = 'INVALIDATE_VEHICLES';
+
+/**
+ * @method
+ * @description
+ * Request add vehicle
+ */
+function requestAddVehicle() {
+	return {
+		type: REQUEST_ADD_VEHICLE
+	};
+}
+
+/**
+ * @method
+ * @description
+ * Request add vehicle
+ */
+function receiveAddVehicle() {
+	return {
+		type: RECEIVE_ADD_VEHICLE
+	};
+}
+
+/**
+ * @method
+ * @description
+ * Vehicle add fetch error
+ */
+function errorAddVehicle(error) {
+	return {
+		type: ERROR_ADD_VEHICLE,
+		receivedAt: Date.now(),
+		error
+	};
+}
 
 /**
  * @method
@@ -22,6 +61,17 @@ export const INVALIDATE_VEHICLES = 'INVALIDATE_VEHICLES';
 function requestVehicles() {
 	return {
 		type: REQUEST_VEHICLES
+	};
+}
+
+/**
+ * @method
+ * @description
+ * Invalidate vehicles
+ */
+function invalidateVehicles() {
+	return {
+		type: INVALIDATE_VEHICLES
 	};
 }
 
@@ -63,6 +113,28 @@ function fetchVehicles(state) {
 		return fetch('/api/vehicles/?_user=' + (state.login.session && state.login.session._id))
 			.then(response => response.json(), error => dispatch(errorVehicles(error)))
 			.then(json => dispatch(receiveVehicles(json)));
+	};
+}
+
+/**
+ * @method
+ * @param {object} vehicle - Vehicle object data
+ * @description
+ * Add vehicles
+ */
+export function addVehicle(vehicle) {
+	return dispatch => {
+		dispatch(requestAddVehicle());
+		return fetch('/api/vehicles', {
+			method: 'POST',
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			body: JSON.stringify(vehicle)
+		})
+			.then(() => dispatch(receiveAddVehicle()), error => dispatch(errorAddVehicle(error)))
+			.then(() => dispatch(invalidateVehicles()))
+			.then(() => dispatch(fetchVehiclesIfNeeded()));
 	};
 }
 

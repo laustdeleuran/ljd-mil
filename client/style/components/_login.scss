@@ -16,3 +16,14 @@
 
 	@include transform(translateY(-50%));
 }
+.c-login__title,
+.c-login__subtitle {
+	margin: 0;
+}
+.c-login__title {
+	@include adjust-font-size-to(modular-scale(3));
+	text-transform: uppercase;
+}
+.c-login__btn {
+	margin-top: spacer-size(1);
+}
