@@ -1,0 +1,28 @@
+/**
+ * Links
+ *
+ * Standard link styling. We're using border-bottom-color for underlines, as it looks WAY better. It can be a bit annoying though, as  you need to escape it on all a tags you use in your modules.
+ *
+ * @section Base
+ * @author ljd
+ */
+%link {
+	outline: none;
+	@include experimental(touch-callout, none);
+	@include experimental(tap-highlight-color, rgba($color-black, 0));
+}
+a {
+	@extend %link;
+
+	color: $color-purple-dark;
+	text-decoration: none;
+	vertical-align: baseline;
+	
+	@include link-active {
+		color: $color-purple-dark;
+	}
+}
+a[href],
+a[ng-click] {
+	cursor: pointer;
+}

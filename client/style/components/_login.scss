@@ -1,0 +1,29 @@
+/**
+* Login
+*
+* @section Components
+* @author ljd
+*/
+.c-login {
+	width: 100vw;
+
+	position: absolute;
+	top: 50%;
+	right: 0;
+	left: 0;
+
+	text-align: center;
+
+	@include transform(translateY(-50%));
+}
+.c-login__title,
+.c-login__subtitle {
+	margin: 0;
+}
+.c-login__title {
+	@include adjust-font-size-to(modular-scale(3));
+	text-transform: uppercase;
+}
+.c-login__btn {
+	margin-top: spacer-size(1);
+}

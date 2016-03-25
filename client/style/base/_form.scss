@@ -1,0 +1,74 @@
+/**
+ * Form elements
+ *
+ * @section Base
+ * @author ljd
+ */
+form,
+label, 
+fieldset {
+	display: block;
+}
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+input[type="file"],
+input[type="checkbox"],
+input[type="radio"],
+label[for] {
+	cursor: pointer;
+
+	@include experimental(tap-highlight-color, rgba($color-black, 0));
+}
+input, 
+select,
+textarea {
+	display: inline-block;
+	box-sizing: border-box;
+	border: none;
+	border-radius: 0;
+	padding: 0 0.25em;
+	height: $base-line-height;
+
+	font-size: modular-scale(0);
+	line-height: $base-line-height;
+	font-family: $font-stack-sans;
+	color: $color-white;
+	vertical-align: top;
+
+	background: rgba($color-white, 0.25);
+
+	@include appearance(none);
+	box-shadow: 0 1px $color-white;
+
+	@include placeholder {
+		@include adjust-font-size-to(modular-scale(0));
+		color: rgba($color-black, 0.2);
+	}
+
+	&:focus {
+		outline: none;
+
+		box-shadow: 0 1px $color-purple-dark;
+	}
+}
+input[type] { // Needs specificity to overwrite weird base styles in normalize
+	box-sizing: border-box;
+}
+textarea {
+	height: em($base-line-height * 10);
+	overflow: auto;
+
+	resize: none;
+}
+button {
+	@include experimental(appearance, none);
+	display: inline-block;
+}
+// IE fixes - https://developer.mozilla.org/en-US/docs/Web/CSS/::-ms-clear
+input::-ms-clear, 
+input::-ms-reveal {
+    display: none !important;
+}

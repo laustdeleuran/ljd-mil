@@ -1,0 +1,23 @@
+/**
+* Nav
+*
+* @section Components
+* @author ljd
+*/
+.c-nav {
+	text-align: center;
+}
+.c-nav__list {
+	margin: 0 0 spacer-size(2) 0;
+
+	text-align: center;
+}
+.c-nav__link {
+	display: inline-block;
+	margin-bottom: spacer-size(0);
+	border-bottom: 0.05em solid $color-white;
+	
+	@include adjust-font-size-to(modular-scale(1));
+	color: $color-white;
+	text-align: center;
+}

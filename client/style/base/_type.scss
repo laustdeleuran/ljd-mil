@@ -1,0 +1,49 @@
+/**
+ * Typography
+ *
+ * @section Base
+ * @author ljd
+ */
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 $base-line-height;
+
+	@include adjust-font-size-to(modular-scale(2));
+	font-weight: 300;
+}
+h2 {
+	@include adjust-font-size-to(modular-scale(2));
+}
+h3 {
+	@include adjust-font-size-to(modular-scale(1));
+}
+h4, h5, h6 {
+	@include adjust-font-size-to(modular-scale(0));
+}
+p,
+ol,
+ul,
+blockquote,
+figure,
+figcaption,
+table {
+	display: block;
+	margin: 0 0 $base-line-height;
+	padding: 0;
+}
+code {
+	@include adjust-font-size-to(modular-scale(0));
+}
+hr {
+	margin: 0 0 $base-line-height;
+	height: 1px;
+	border: none;
+	background: $color-black;
+}
+mark {
+	display: inline-block;
+	padding: 0 0.25em;
+
+	color: $color-black;
+	
+	background: $color-white;
+}

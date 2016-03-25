@@ -1,0 +1,18 @@
+/**
+* Footer
+*
+* @section Components
+* @author ljd
+*/
+.c-footer {
+	padding: spacer-size(0);;
+
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: $z-index-footer;
+
+	@include adjust-font-size-to(modular-scale(-1));
+	text-align: right;
+}

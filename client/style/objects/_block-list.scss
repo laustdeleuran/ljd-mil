@@ -1,0 +1,12 @@
+/**
+* Block list
+*
+* Basic list styled to just be block-level items followed by each other. 
+*
+* @section Objects
+* @author ljd
+*/
+.o-block-list,
+.o-block-list > li {
+	@extend %list-helper;
+}
