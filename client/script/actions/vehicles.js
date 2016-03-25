@@ -55,6 +55,28 @@ function errorAddVehicle(error) {
 
 /**
  * @method
+ * @param {object} vehicle - Vehicle object data
+ * @description
+ * Add vehicles
+ */
+export function addVehicle(vehicle) {
+	return dispatch => {
+		dispatch(requestAddVehicle());
+		return fetch('/api/vehicles', {
+			method: 'POST',
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			}),
+			body: JSON.stringify(vehicle)
+		})
+			.then(() => dispatch(receiveAddVehicle()), error => dispatch(errorAddVehicle(error)))
+			.then(() => dispatch(invalidateVehicles()))
+			.then(() => dispatch(fetchVehiclesIfNeeded()));
+	};
+}
+
+/**
+ * @method
  * @description
  * Request vehicles
  */
@@ -113,28 +135,6 @@ function fetchVehicles(state) {
 		return fetch('/api/vehicles/?_user=' + (state.login.session && state.login.session._id))
 			.then(response => response.json(), error => dispatch(errorVehicles(error)))
 			.then(json => dispatch(receiveVehicles(json)));
-	};
-}
-
-/**
- * @method
- * @param {object} vehicle - Vehicle object data
- * @description
- * Add vehicles
- */
-export function addVehicle(vehicle) {
-	return dispatch => {
-		dispatch(requestAddVehicle());
-		return fetch('/api/vehicles', {
-			method: 'POST',
-			headers: new Headers({
-				'Content-Type': 'application/json'
-			}),
-			body: JSON.stringify(vehicle)
-		})
-			.then(() => dispatch(receiveAddVehicle()), error => dispatch(errorAddVehicle(error)))
-			.then(() => dispatch(invalidateVehicles()))
-			.then(() => dispatch(fetchVehiclesIfNeeded()));
 	};
 }
 

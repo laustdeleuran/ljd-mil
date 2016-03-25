@@ -65,7 +65,7 @@ LoginModule.propTypes = {
 function mapStateToProps(state, ownProps) {
 	return {
 		session: state.login && state.login.session,
-		redirect: ownProps.redirect
+		redirect: ownProps.location.query.redirect
 	};
 }
 

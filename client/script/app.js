@@ -54,11 +54,13 @@ const middleware = applyMiddleware(routerMiddleware(browserHistory), thunkMiddle
 import drawer from './reducers/drawer';
 import login from './reducers/login';
 import vehicles from './reducers/vehicles';
+import logsByVehicle from './reducers/logs';
 
 const reducers = combineReducers(Object.assign({}, {
 	drawer,
 	login,
 	vehicles,
+	logsByVehicle,
 	routing: routerReducer
 }));
 
@@ -98,7 +100,7 @@ import VehicleListModule from './components/modules/vehicle-list';
 
 import LogListModule from './components/modules/log-list';
 
-import AnalysisModule from './components/modules/analysis';
+import StatsModule from './components/modules/stats';
 
 
 
@@ -113,8 +115,8 @@ ReactDOM.render(
 			<Route path="/" component={ UserIsAuthenticated(CoreLayout) }>
 				<IndexRoute component={ VehicleListModule } />
 				<Route path="vehicle/:id" component={ VehicleModule }>
-					<IndexRoute component={ LogListModule } />
-					<Route path="/analysis" component={ AnalysisModule } />
+					<Route path="log" component={ LogListModule } />
+					<Route path="stats" component={ StatsModule } />
 				</Route>
 			</Route>
 		</Router>
