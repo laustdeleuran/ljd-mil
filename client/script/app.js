@@ -11,7 +11,21 @@
 
 
 
-// Get libs
+// Get and init libs
+
+// Fetch
+import 'isomorphic-fetch';
+
+// Browsernizr
+import 'browsernizr/lib/html5shiv';
+import 'browsernizr/lib/addTest';
+import 'browsernizr/test/touchevents';
+import 'browsernizr/test/css/animations';
+import 'browsernizr/test/css/columns';
+import 'browsernizr/test/css/transforms';
+import 'browsernizr';
+
+// React
 import React from 'react';
 global.React = React;
 import ReactDOM from 'react-dom';
@@ -98,7 +112,7 @@ ReactDOM.render(
 			</Route>
 			<Route path="/" component={ UserIsAuthenticated(CoreLayout) }>
 				<IndexRoute component={ VehicleListModule } />
-				<Route path="vehicles/:id" component={ VehicleModule }>
+				<Route path="vehicle/:id" component={ VehicleModule }>
 					<IndexRoute component={ LogListModule } />
 					<Route path="/analysis" component={ AnalysisModule } />
 				</Route>

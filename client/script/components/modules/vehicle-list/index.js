@@ -14,7 +14,7 @@ import React from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-//import { Link } from 'react-router';
+import { Link } from 'react-router';
 
 import { fetchVehiclesIfNeeded } from '../../../actions/vehicles';
 import { addVehicle } from '../../../actions/vehicles';
@@ -66,7 +66,11 @@ class VehicleListModule extends React.Component {
 		const { vehicles } = this.props;
 
 		if (vehicles && vehicles.length) {
-			return vehicles.map(vehicle => <li className="c-list__item c-list__item--empty" key={ vehicle._id }>{ vehicle.name }</li>);
+			return vehicles.map(vehicle => 
+				<li className="c-list__item" key={ vehicle._id }>
+					<Link to={ 'vehicle/' + vehicle._id } className="c-list__link">{ vehicle.name } <span className="c-list__arrow"></span></Link>
+				</li>
+			);
 		} else {
 			return <li className="c-list__item c-list__item--empty">You have no vehicles yet. Add one!</li>;
 		}

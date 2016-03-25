@@ -14,13 +14,9 @@
 a {
 	@extend %link;
 
-	color: $color-purple-dark;
+	color: $color-white;
 	text-decoration: none;
 	vertical-align: baseline;
-	
-	@include link-active {
-		color: $color-purple-dark;
-	}
 }
 a[href],
 a[ng-click] {

@@ -15,4 +15,12 @@
 
 	@include adjust-font-size-to(modular-scale(-1));
 	text-align: right;
+	color: $color-purple-dark;
+}
+.c-footer__link {
+	color: $color-purple-dark;
+	
+	@include link-active {
+		color: $color-purple-dark;
+	}
 }

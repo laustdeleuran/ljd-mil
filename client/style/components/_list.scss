@@ -5,8 +5,52 @@
 * @author ljd
 */
 .c-list {}
+li.c-list__item {
+	margin: 0 auto spacer-size(0);
+	max-width: 30em;
+}
+.c-list__link {
+	overflow: hidden;
+	display: block;
+
+	@include link-active {
+		text-decoration: underline;
+	}
+}
 .c-list__item--empty {
 	opacity: 0.5;
 	text-align: center;
 	cursor: not-allowed;
+}
+.c-list__arrow {
+	float: right;
+	width: spacer-size(0);
+	height: spacer-size(0);
+	margin-top: spacer-size(0) / 2;
+
+	position: relative;
+	top: 50%;
+
+	&:before,
+	&:after {
+		@extend %pseudo-block;
+
+		width: spacer-size(0);
+		height: 2px;
+
+		position: absolute;
+		top: 50%;
+		right: 0;
+
+		background: $color-white;
+		@include transform-origin(right center);
+	}
+	&:before {
+		@include transform(rotate(45deg));
+	}
+	&:after {
+		margin-top: -1px;
+
+		@include transform(rotate(-45deg));
+	}
 }
