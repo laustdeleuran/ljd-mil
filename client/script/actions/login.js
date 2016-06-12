@@ -212,7 +212,7 @@ export function fetchLoginIfNeeded() {
 /**
  * @method
  * @description
- * Logout and destory all sessions
+ * Logout and destroy all sessions
  */
 export function logout() {
 	return (dispatch) => {
