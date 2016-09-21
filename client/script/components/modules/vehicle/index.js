@@ -10,6 +10,9 @@
  * @author ljd
  */
 
+import '../../../../style/objects/_flat-list.scss';
+import '../../../../style/components/_subnav.scss';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';

@@ -10,6 +10,8 @@
  * @author ljd
  */
 
+import '../../../../style/components/_footer.scss';
+
 import React from 'react';
 
 class FooterModule extends React.Component {

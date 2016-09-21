@@ -1,5 +1,7 @@
 'use strict';
 
+import path from 'path';
+
 // Get data from package.json
 import getPackageJson from './utils/get-package-json';
 
@@ -19,35 +21,23 @@ export const PORT_SERVER = 8888;
 export const PORT_BROWSER = 3000;
 export const URL_SERVER = 'local.phosphenefx.com';
 
-// JS
-export const JS_ENTRY = DIR_CLIENT_SRC + '/script/app.js'
-
-// JS linting
-export const JS_LINT = [
-	DIR_CLIENT_DIST + '/script/**/*.js',
-	'webpack/**/*.js'
-];
-
-// SCSS
-export const SCSS_ENTRY = DIR_CLIENT_DIST + 'style/**/*.{scss,sass,css}';
-
 // HTML
 export const HTML_FILES = [
-	DIR_CLIENT_DIST + '/**/*.{html,php}',
-	'!' + DIR_CLIENT_DIST + '/script/**/*.html'
+	DIR_CLIENT_SRC + '/**/*.{html,php}',
+	'!' + DIR_CLIENT_SRC + '/script/**/*.html'
 ];
 
 // Images
 export const IMG_FILES = [
-	DIR_CLIENT_DIST + '/screenshot.png',
-	DIR_CLIENT_DIST + '/media/**/*.{png,jpeg,jpg,gif,svg}'
+	DIR_CLIENT_SRC + '/screenshot.png',
+	DIR_CLIENT_SRC + '/media/**/*.{png,jpeg,jpg,gif,svg}'
 ];
 
 // Static files
 export const STATIC_FILES = [
-	DIR_CLIENT_DIST + '/media/**/*.mp4',
-	DIR_CLIENT_DIST + '/media/**/*.ico',
-	DIR_CLIENT_DIST + '/media/fonts/**/*.*'
+	DIR_CLIENT_SRC + '/media/**/*.mp4',
+	DIR_CLIENT_SRC + '/media/**/*.ico',
+	DIR_CLIENT_SRC + '/media/fonts/**/*.*'
 ];
 
 // Version files
@@ -61,7 +51,7 @@ export const VERSION_FILES = {
 
 // Build webpack config
 const config = {
-	entry: JS_ENTRY,
+	entry: DIR_CLIENT_SRC + '/script/app.js',
 	output: {
 		filename: 'app.' + PKG_JSON.version + '.js',
 		path: DIR_CLIENT_DIST + '/script'
@@ -84,10 +74,12 @@ const config = {
 			},
 			{ 
 				test: /\.scss$/, 
-				loaders: ['style', 'css', 'sass']
+				loaders: ['style', 'css', 'sass?includePaths=' + DIR_CLIENT_DIST + '/style/base.scss']
 			}
 		]
 	}
 };
+
+
 
 export default config;

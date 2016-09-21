@@ -10,6 +10,9 @@
  * @author ljd
  */
 
+import '../../../../style/objects/_btn.scss';
+import '../../../../style/components/_login.scss';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';

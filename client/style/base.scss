@@ -41,9 +41,9 @@
 /**
 * [3] Frameworks & vars
 */
-@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
-@import "../../node_modules/normalize.css/normalize";
-@import "../../node_modules/ljd-njord/src/njord";
+@import "~bourbon/app/assets/stylesheets/bourbon";
+@import "~normalize.css/normalize";
+@import "~ljd-njord/src/njord";
 @import "vars";
 
 
@@ -56,40 +56,3 @@
 @import "base/form";
 @import "base/links";
 @import "base/type";
-
-
-
-/**
-* [5] Utilities
-*/
-
-
-
-/**
-* [6] Objects
-*/
-@import "objects/block-list";
-@import "objects/btn";
-@import "objects/flat-list";
-@import "objects/noscript";
-@import "objects/scroller";
-
-
-/**
-* [7] Components
-*/
-@import "components/create";
-@import "components/drawer";
-@import "components/footer";
-@import "components/layout";
-@import "components/list";
-@import "components/login";
-@import "components/nav";
-@import "components/user";
-@import "components/subnav";
-
-
-
-/**
-* [8] Hacks
-*/

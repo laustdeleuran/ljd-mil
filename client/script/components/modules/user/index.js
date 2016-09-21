@@ -10,6 +10,9 @@
  * @author ljd
  */
 
+import '../../../../style/objects/_btn.scss';
+import '../../../../style/components/_user.scss';
+
 import React from 'react';
 import { connect } from 'react-redux';
 

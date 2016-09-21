@@ -10,6 +10,9 @@
  * @author ljd
  */
 
+import '../../../../style/objects/_scroller.scss';
+import '../../../../style/components/_layout.scss';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';

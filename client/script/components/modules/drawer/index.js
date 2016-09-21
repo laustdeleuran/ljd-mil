@@ -9,6 +9,8 @@
  * @module 'components/modules/drawer'
  * @author ljd
  */
+ 
+import '../../../../style/components/_drawer.scss';
 
 import React from 'react';
 import { connect } from 'react-redux';

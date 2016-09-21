@@ -9,6 +9,9 @@
  * @module 'components/modules/nav'
  * @author ljd
  */
+ 
+import '../../../../style/objects/_block-list.scss';
+import '../../../../style/components/_nav.scss';
 
 import React from 'react';
 import { connect } from 'react-redux';

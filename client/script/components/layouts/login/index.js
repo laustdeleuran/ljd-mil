@@ -9,6 +9,8 @@
  * @module 'components/layouts/login'
  * @author ljd
  */
+ 
+import '../../../../style/components/_layout.scss';
 
 import React from 'react';
 import { connect } from 'react-redux';

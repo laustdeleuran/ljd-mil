@@ -10,6 +10,11 @@
  * @author ljd
  */
 
+import '../../../../style/objects/_block-list.scss';
+import '../../../../style/objects/_btn.scss';
+import '../../../../style/components/_list.scss';
+import '../../../../style/components/_create.scss';
+
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
