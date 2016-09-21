@@ -4,6 +4,8 @@
   "description": "MIL - The dead simple mileage tracker",
   "main": "server",
   "scripts": {
+    "start": "node server",
+    "postinstall": "NODE_ENV=production gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
