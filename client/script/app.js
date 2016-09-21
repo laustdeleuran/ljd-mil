@@ -25,6 +25,10 @@ import 'browsernizr/test/css/columns';
 import 'browsernizr/test/css/transforms';
 import 'browsernizr';
 
+// Captain's log
+import Captain from 'captainslog';
+export const log = new Captain();
+
 // React
 import React from 'react';
 global.React = React;

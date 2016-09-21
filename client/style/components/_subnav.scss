@@ -16,5 +16,5 @@
 	display: block;
 }
 .c-subnav__link--active {
-	opacity: 0.5;
+	border-bottom: 1px solid $color-white;
 }
