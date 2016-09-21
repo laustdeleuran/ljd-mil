@@ -1,6 +1,6 @@
 {
   "name": "ljd-mil",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "MIL - The dead simple mileage tracker",
   "main": "server",
   "scripts": {
