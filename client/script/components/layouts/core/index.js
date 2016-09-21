@@ -12,7 +12,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 import UserModule from '../../modules/user';
 import DrawerModule from '../../modules/drawer';

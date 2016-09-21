@@ -13,7 +13,7 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import classNames from 'classNames';
+import classNames from 'classnames';
 //import { push } from 'react-router-redux';
 
 import { addLog, fetchLogsIfNeeded } from '../../../actions/logs';
