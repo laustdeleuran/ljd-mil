@@ -20,7 +20,7 @@ var logSchema = new Schema({
 	distance: Number,
 	volume: Number,
 	price: Number,
-	date: { type: Date, default: Date.now}
+	date: { type: Date, default: Date.now }
 });
 
 

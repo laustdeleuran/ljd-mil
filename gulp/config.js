@@ -13,7 +13,7 @@ export default {
 	serverPort: 2000,
 	browserPort: 3000,
 	UIPort: 3001,
-	serverUrl: 'localhost',
+	serverUrl: 'local.mil.ljd.dk',
 
 	// Paths
 	paths: {

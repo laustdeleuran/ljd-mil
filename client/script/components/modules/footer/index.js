@@ -17,7 +17,7 @@ class FooterModule extends React.Component {
 	render () {
 		return (
 			<footer className="c-footer">
-				Built by <a href="http://ljd.dk">LJD</a>
+				Built by <a href="http://ljd.dk" className="c-footer__link">LJD</a>
 			</footer>
 		);
 	}

@@ -14,36 +14,28 @@ import React from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-//import { Link } from 'react-router';
+import { Link } from 'react-router';
 
-import { fetchVehiclesIfNeeded } from '../../../actions/vehicles';
-import { addVehicle } from '../../../actions/vehicles';
+import { addVehicle, fetchVehiclesIfNeeded } from '../../../actions/vehicles';
 
 class VehicleListModule extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
-			name: 'My Car',
 			date: moment().format('YYYY-MM-DD')
 		};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		const { dispatch } = this.props;
 
 		dispatch(fetchVehiclesIfNeeded());
 	}
 
-	handleNameChange(event) {
+	handleChange(name, event) {
 		this.setState({
-			name: event.target.value
-		});
-	}
-
-	handleDateChange(event) {
-		this.setState({
-			date: event.target.value
+			[name]: event.target.value
 		});
 	}
 
@@ -60,13 +52,22 @@ class VehicleListModule extends React.Component {
 			created: date,
 			_user: session._id
 		}));
+
+		this.setState({
+			name: '',
+			date: moment().format('YYYY-MM-DD')
+		});
 	}
 
 	renderItems() {
 		const { vehicles } = this.props;
 
 		if (vehicles && vehicles.length) {
-			return vehicles.map(vehicle => <li className="c-list__item c-list__item--empty" key={ vehicle._id }>{ vehicle.name }</li>);
+			return vehicles.map(vehicle => 
+				<li className="c-list__item" key={ vehicle._id }>
+					<Link to={ 'vehicle/' + vehicle._id + '/log' } className="c-list__link">{ vehicle.name } <span className="c-list__arrow"></span></Link>
+				</li>
+			);
 		} else {
 			return <li className="c-list__item c-list__item--empty">You have no vehicles yet. Add one!</li>;
 		}
@@ -78,15 +79,18 @@ class VehicleListModule extends React.Component {
 
 		return (
 			<div className="c-list">
+
 				<ul className="c-list__list o-block-list">
 					{ this.renderItems() }
 				</ul>
-				<form onSubmit={ (event) => this.onAddSubmit(event) } className={ classNames('c-list__form', 'c-create', { 'c-create--loading': isFetching }) }>
-					<input type="text" value={ name } onChange={ (event) => this.handleNameChange(event) } name="name" placeholder="Name" className="c-create__input" />
-					<input type="date" value={ date } onChange={ (event) => this.handleDateChange(event) } name="date" className="c-create__input" />
+
+				<form onSubmit={ (event) => this.onAddSubmit(event) } className={ classNames('c-create', { 'c-create--loading': isFetching }) }>
+					<input type="text" value={ name } onChange={ (event) => this.handleChange('name', event) } name="name" placeholder="Name" className="c-create__input" required />
+					<input type="date" value={ date } onChange={ (event) => this.handleChange('date', event) } name="date" className="c-create__input" required />
 
 					<button className="c-create__btn o-btn o-btn--medium">Add vehicle</button>
 				</form>
+
 			</div>
 			);
 	}

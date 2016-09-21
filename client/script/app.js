@@ -11,7 +11,25 @@
 
 
 
-// Get libs
+// Get and init libs
+
+// Fetch
+import 'isomorphic-fetch';
+
+// Browsernizr
+import 'browsernizr/lib/html5shiv';
+import 'browsernizr/lib/addTest';
+import 'browsernizr/test/touchevents';
+import 'browsernizr/test/css/animations';
+import 'browsernizr/test/css/columns';
+import 'browsernizr/test/css/transforms';
+import 'browsernizr';
+
+// Captain's log
+import Captain from 'captainslog';
+export const log = new Captain();
+
+// React
 import React from 'react';
 global.React = React;
 import ReactDOM from 'react-dom';
@@ -40,11 +58,13 @@ const middleware = applyMiddleware(routerMiddleware(browserHistory), thunkMiddle
 import drawer from './reducers/drawer';
 import login from './reducers/login';
 import vehicles from './reducers/vehicles';
+import logsByVehicle from './reducers/logs';
 
 const reducers = combineReducers(Object.assign({}, {
 	drawer,
 	login,
 	vehicles,
+	logsByVehicle,
 	routing: routerReducer
 }));
 
@@ -84,7 +104,7 @@ import VehicleListModule from './components/modules/vehicle-list';
 
 import LogListModule from './components/modules/log-list';
 
-import AnalysisModule from './components/modules/analysis';
+import StatsModule from './components/modules/stats';
 
 
 
@@ -98,9 +118,9 @@ ReactDOM.render(
 			</Route>
 			<Route path="/" component={ UserIsAuthenticated(CoreLayout) }>
 				<IndexRoute component={ VehicleListModule } />
-				<Route path="vehicles/:id" component={ VehicleModule }>
-					<IndexRoute component={ LogListModule } />
-					<Route path="/analysis" component={ AnalysisModule } />
+				<Route path="vehicle/:id" component={ VehicleModule }>
+					<Route path="log" component={ LogListModule } />
+					<Route path="stats" component={ StatsModule } />
 				</Route>
 			</Route>
 		</Router>

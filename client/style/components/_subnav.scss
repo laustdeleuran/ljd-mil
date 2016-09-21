@@ -1,0 +1,20 @@
+/**
+* Subnav
+*
+* @section Components
+* @author ljd
+*/
+.c-subnav {
+	margin: 0 auto spacer-size(0);
+	padding-bottom: spacer-size(0);
+	border-bottom: 1px solid $color-white;
+
+	text-align: center;
+}
+.c-subnav__list {} // Extends .o-flat-list
+.c-subnav__link {
+	display: block;
+}
+.c-subnav__link--active {
+	border-bottom: 1px solid $color-white;
+}
